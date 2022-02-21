@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  rabbitmq:
+    image: rabbitmq:3.9.13
+    ports:
+      - 5679:5672
+  rabbitmgm:
+    image: rabbitmq:3-management
+    ports:
+      - 15679:15672

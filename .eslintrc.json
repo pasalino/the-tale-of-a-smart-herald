@@ -1,0 +1,6 @@
+{
+    "extends": "facile/node",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    }
+}

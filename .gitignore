@@ -1,0 +1,16 @@
+# Dependency directory and environment
+node_modules
+yarn-error.log
+
+# Editors
+.idea
+.vscode
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
+
+# Project specific
