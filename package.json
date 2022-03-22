@@ -4,11 +4,14 @@
     "author": "Pasqualino de Simone",
     "license": "MIT",
     "scripts": {
-        "start": "ts-node ./src/index.ts",
-        "start:dev": "nodemon"
+        "start": "ts-node ./src/create-topology",
+        "start:dev": "nodemon ./src/create-topology",
+        "start:temperature-device": "ts-node ./src/temperature-device",
+        "start:hub": "ts-node ./src/hub"
     },
     "devDependencies": {
         "@types/amqplib": "^0.8.2",
+        "@types/uuid": "^8.3.4",
         "eslint": "^8.8.0",
         "eslint-config-facile": "^0.5.0",
         "nodemon": "^2.0.15",
@@ -19,12 +22,7 @@
     "dependencies": {
         "amqplib": "^0.8.0",
         "dotenv": "^16.0.0",
-        "fp-ts": "^2.11.8",
-        "io-ts": "^2.2.16",
-        "io-ts-reporters": "^2.0.1",
-        "io-ts-types": "^0.5.16",
-        "monocle-ts": "^2.3.12",
-        "newtype-ts": "^0.3.5"
+        "uuid": "^8.3.2"
     },
     "engines": {
         "node": ">=16.0.0"
