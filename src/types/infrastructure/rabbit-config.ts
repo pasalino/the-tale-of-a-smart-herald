@@ -1,4 +1,4 @@
-export interface Config {
+export interface RabbitConfig {
     hostname: string
     port: number
     credentials: {

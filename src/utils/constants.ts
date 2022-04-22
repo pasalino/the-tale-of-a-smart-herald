@@ -1,5 +1,5 @@
-export const DURABLE_TOPOLOGY = false
-
 export const NOTIFICATIONS_EXCHANGE = 'notifications'
-export const EVENT_TEMPERATURE_QUEUE = 'event.temperature'
-export const COMMAND_LIGHT_QUEUE = 'command.light'
+export const TAT_TAX_CREATED_QUEUE = 'tat.tax.created'
+export const DURABLE_TOPOLOGY = false
+export const PERCENTAGE_TWEEDLEDEE = 0.0
+export const RESPONSE_DELAY = 0

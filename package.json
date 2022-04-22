@@ -1,27 +1,35 @@
 {
-    "name": "rabbit-retry-system",
+    "name": "the-smart-herald",
     "version": "1.0.0",
     "author": "Pasqualino de Simone",
     "license": "MIT",
     "scripts": {
-        "start": "ts-node ./src/create-topology",
-        "start:dev": "nodemon ./src/create-topology",
-        "start:temperature-device": "ts-node ./src/temperature-device",
-        "start:hub": "ts-node ./src/hub"
+        "the-court": "ts-node ./src/the-court/index.ts",
+        "tat:1-noack": "ts-node ./src/tweedledee-and-tweedledum/1-noack/index.ts",
+        "tat:2-ack": "ts-node ./src/tweedledee-and-tweedledum/2-ack/index.ts",
+        "tat:3-ack-nack": "ts-node ./src/tweedledee-and-tweedledum/3-ack-nack/index.ts",
+        "tat:4-dlx": "ts-node ./src/tweedledee-and-tweedledum/4-dlx/index.ts",
+        "tat:5-dlx-attempts": "ts-node ./src/tweedledee-and-tweedledum/5-dlx-attempts/index.ts"
     },
     "devDependencies": {
         "@types/amqplib": "^0.8.2",
         "@types/uuid": "^8.3.4",
         "eslint": "^8.8.0",
         "eslint-config-facile": "^0.5.0",
-        "nodemon": "^2.0.15",
         "prettier": "^2.5.1",
         "ts-node": "^10.5.0",
-        "typescript": "^4.5.5"
+        "typescript": "^4.5.5",
+        "@types/express": "^4.17.13",
+        "@types/morgan": "^1.9.3"
     },
     "dependencies": {
+        "ajv": "^8.11.0",
         "amqplib": "^0.8.0",
+        "body-parser": "^1.20.0",
+        "chalk": "4.1.2",
         "dotenv": "^16.0.0",
+        "express": "^4.17.3",
+        "morgan": "^1.10.0",
         "uuid": "^8.3.2"
     },
     "engines": {
