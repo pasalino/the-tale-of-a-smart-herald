@@ -22,7 +22,7 @@ const initTaxCreatedQueueConsumer = (
             return
         }
 
-        console.log(msg)
+        // console.log(msg)
 
         const result = await tweedledeeAndTweedledumService.readAndPayTax(message.data)
 

@@ -2,4 +2,4 @@
 
 docker-compose down
 docker-compose rm rabbitmq 
-docker-compose up -d
+docker-compose up 

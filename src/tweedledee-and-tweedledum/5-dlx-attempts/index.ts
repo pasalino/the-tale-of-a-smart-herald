@@ -20,14 +20,22 @@ const initTaxCreatedQueueConsumer = (
 
         if (!isTaxCreatedEvent(message)) {
             console.warn(`Message is not tax created event ${JSON.stringify(message)}`)
-            const options = {
+            const errorOptions = {
                 headers: { 'x-reason': 'bad format' },
             }
-            const routingKey = 'error'
-            channel.publish(ERROR_QUEUE, routingKey, msg.content, options)
+            const errorRoutingKey = 'error'
+            channel.publish(ERROR_QUEUE, errorRoutingKey, msg.content, errorOptions)
             channel.ack(msg)
             return
         }
+
+        // console.log(msg)
+
+        const xDeath = msg.properties.headers['x-death']
+        const firstDeath = xDeath && xDeath[xDeath?.length - 1]
+        const attempts = ((firstDeath && firstDeath.count) || 0) + 1
+
+        console.log(chalk.yellow(`Attempt no. ${attempts} for ${message.data.name}!`))
 
         const result = await tweedledeeAndTweedledumService.readAndPayTax(message.data)
 
@@ -36,24 +44,22 @@ const initTaxCreatedQueueConsumer = (
             return
         }
 
-        const xDeath = msg.properties.headers['x-death']
-        const firstDeath = xDeath && xDeath[xDeath?.length - 1]
-        const attempts = ((firstDeath && firstDeath.count) || 0) + 1
-
         console.log('x-death', xDeath)
 
-        if (attempts >= ATTEMPTS) {
-            console.log(chalk.magenta(chalk.bold(`The message ${message.correlationId} will sent in error queue`)))
-
-            const options = {
-                headers: { 'x-reason': 'unavailable' },
-            }
-            const routingKey = 'error'
-            channel.publish(ERROR_QUEUE, routingKey, msg.content, options)
-            channel.ack(msg)
+        if (attempts < ATTEMPTS) {
+            channel.nack(msg, undefined, false)
             return
         }
-        channel.nack(msg, undefined, false)
+
+        console.log(chalk.magenta(chalk.bold(`The message ${message.data.name} will sent in error queue`)))
+
+        const options = {
+            headers: { 'x-reason': 'unavailable' },
+        }
+        const routingKey = 'error'
+        channel.publish(ERROR_QUEUE, routingKey, msg.content, options)
+        channel.ack(msg)
+        return
     }
 
 async function main() {

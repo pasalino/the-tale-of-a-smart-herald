@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ ! -z $1 ] 
-then 
-    TAX_NAME=$1
-else
-    TAX_NAME='new tax'
-fi
+TAX_NAME=$1
 
 
 BODY=$(printf '{"name": "%s","amount": 1,"frequency": "weekly"}' "$TAX_NAME")
