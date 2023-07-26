@@ -21,7 +21,3 @@ You find complete list in `package.json`
 
 Use script `./script/add-tax.sh <tax_name>` in order to create new Tax
 
-## References
-
--   Presentation
--   References Doc
